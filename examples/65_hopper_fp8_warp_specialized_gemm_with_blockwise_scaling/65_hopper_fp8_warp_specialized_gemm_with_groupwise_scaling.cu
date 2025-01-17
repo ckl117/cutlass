@@ -132,7 +132,7 @@ using OperatorClass       = cutlass::arch::OpClassTensorOp;                 // O
 using TileShape           = Shape<_128,_128,_128>;                           // Threadblock-level tile size
 using ClusterShape        = Shape<_1,_2,_1>;                                // Shape of the threadblocks in a cluster
 
-constexpr int ScaleMsPerTile = 2;
+constexpr int ScaleMsPerTile = size<0>(TileShape{});
 constexpr int ScaleGranularityM = size<0>(TileShape{}) / ScaleMsPerTile;
 
 using KernelSchedule      = cutlass::gemm::KernelTmaWarpSpecializedCooperativeFP8BlockScaledAccum<ScaleGranularityM>;
